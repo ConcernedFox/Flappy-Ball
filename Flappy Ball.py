@@ -17,20 +17,42 @@ class Circle():
     def draw(self):
         screen.draw.filled_circle((self.x, self.y), self.radius, "blue")
 
-Vihaan = Circle(0,0)
+class Circle_2():
+    def __init__(self, x_pos, y_pos):
+        self.radius = 30
+        self.x = x_pos
+        self.y = y_pos
+        self.vx = 200
+        self.vy = 200
+    def draw(self):
+        screen.draw.filled_circle((self.x, self.y), self.radius, "red")
+
+V = Circle(0,0)
+G = Circle_2(50,50)
 def draw():
     screen.clear()
-    Vihaan.draw()
+    V.draw()
+    G.draw()
     
 def update(dt):
-    uy = Vihaan.vy
-    Vihaan.vy = uy + Accelaration * dt
-    Vihaan.y = Vihaan.y + (uy + Vihaan.vy)*0.5*dt
-    Vihaan.x = Vihaan.x + (Vihaan.vx*dt)
-    if Vihaan.y > HEIGHT:
-        Vihaan.y = HEIGHT
-        Vihaan.vy = -Vihaan.vy*0.9
-    if Vihaan.x > WIDTH or Vihaan.x <0:
-        Vihaan.vx = -Vihaan.vx*0.9
+    uy = V.vy
+    uy = G.vy
+    V.vy = uy + Accelaration * dt
+    G.vy = uy + Accelaration * dt
+    V.y = V.y + (uy + V.vy)*0.5*dt
+    G.y = G.y + (uy + G.vy)*0.5*dt
+    V.x = V.x + (V.vx*dt)
+    G.x = G.x + (V.vx*dt)
+    if V.y > HEIGHT:
+        V.y = HEIGHT
+        V.vy = -V.vy*0.9
+    if G.y > HEIGHT:
+        G.y = HEIGHT
+        G.vy = -V.vy*0.9
+    if V.x > WIDTH or V.x <0:
+        V.vx = -V.vx*0.9
+    if G.x > WIDTH or G.x <0:
+        G.vx = -G.vx*0.9
+
 
 pgzrun.go()
